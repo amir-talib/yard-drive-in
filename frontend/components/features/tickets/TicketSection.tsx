@@ -132,12 +132,12 @@ export function TicketSection() {
                 </div>
 
                 <div id="tix-widget" className="max-w-5xl mx-auto relative">
-                    {/* Selling Fast Badge on Widget */}
-                    <span className="absolute -top-3 right-4 md:right-8 z-10 bg-red text-paper font-mono text-[11px] md:text-xs px-3 py-1 rounded-full uppercase tracking-wide border-2 border-paper/40 shadow-lg animate-[wiggle_1s_ease-in-out_infinite]">
+                    {/* Selling Fast Badge - Corner */}
+                    <span className="absolute -top-2 -right-2 z-10 bg-red text-paper font-mono text-[10px] md:text-xs px-3 py-1.5 rounded-bl-lg rounded-tr-lg uppercase tracking-wide border-2 border-paper shadow-lg animate-[wiggle_1s_ease-in-out_infinite]">
                         🔥 Selling Fast!
                     </span>
                     {/* Tix.africa Widget - Scrollable Container */}
-                    <div className="tt-widget w-full h-[80vh] md:h-[85vh] bg-paper/5 rounded-2xl border-2 border-gold/20 shadow-2xl overflow-y-auto overflow-x-hidden [-webkit-overflow-scrolling:touch]">
+                    <div className="tt-widget w-full h-[80vh] md:h-[85vh] bg-paper rounded-2xl border-2 border-gold/20 shadow-2xl overflow-y-auto overflow-x-hidden [-webkit-overflow-scrolling:touch]">
                         <div className="tt-widget-fallback w-full">
                             <iframe
                                 src="https://widget.tix.africa/yard-drive-in/VXNlci1jMDAwY2Y3NC02MGMzLTRlNTgtODJhZi05ZWUyMDhkZTVmMTM="
