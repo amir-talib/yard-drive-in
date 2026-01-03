@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Check, Lock, Info } from "lucide-react";
+import { Check, Lock, Sparkles, Eye } from "lucide-react";
 import Image from "next/image";
 
 interface MovieCardProps {
@@ -17,6 +17,7 @@ interface MovieCardProps {
     onVote: (id: string) => void;
     onPosterClick: (id: string) => void;
     className?: string;
+    rank?: number;
 }
 
 export function MovieCard({
@@ -29,26 +30,39 @@ export function MovieCard({
     userHasVotedForAnother = false,
     onVote,
     onPosterClick,
-    className
+    className,
+    rank
 }: MovieCardProps) {
     const percentage = totalVotes > 0 ? Math.round((votes / totalVotes) * 100) : 0;
     const isDisabled = hasVoted || userHasVotedForAnother;
+    const isLeading = rank === 1;
 
     return (
         <motion.div
-            whileHover={!isDisabled ? { scale: 1.02 } : {}}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: rank ? rank * 0.1 : 0 }}
+            whileHover={!isDisabled ? { scale: 1.03, y: -4 } : {}}
             whileTap={!isDisabled ? { scale: 0.98 } : {}}
             className={cn(
                 "relative group flex flex-col",
-                userHasVotedForAnother && !hasVoted && "opacity-60",
+                isLeading && "z-10",
                 className
             )}
         >
+            {/* Leading Indicator Glow */}
+            {isLeading && (
+                <div className="absolute -inset-1 bg-gradient-to-r from-gold via-orange to-gold rounded-lg blur opacity-50 group-hover:opacity-75 transition-opacity animate-pulse" />
+            )}
+
             {/* Poster Container - Clickable */}
             <div
                 onClick={() => onPosterClick(id)}
                 className={cn(
-                    "relative aspect-[2/3] w-full bg-navy border-2 border-gold shadow-[4px_4px_0px_0px_var(--color-navy)] md:shadow-[8px_8px_0px_0px_var(--color-navy)] overflow-hidden cursor-pointer",
+                    "relative aspect-[2/3] w-full bg-navy overflow-hidden cursor-pointer transition-all duration-300",
+                    "border-3 shadow-[4px_4px_0px_0px_var(--color-navy)] md:shadow-[8px_8px_0px_0px_var(--color-navy)]",
+                    "group-hover:shadow-[6px_6px_0px_0px_var(--color-gold)] md:group-hover:shadow-[12px_12px_0px_0px_var(--color-gold)]",
+                    isLeading ? "border-gold border-4" : "border-gold border-2",
                     userHasVotedForAnother && !hasVoted && "grayscale"
                 )}
             >
@@ -57,71 +71,125 @@ export function MovieCard({
                     src={posterUrl}
                     alt={title}
                     fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                 />
 
-                {/* Title Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy via-navy/80 to-transparent p-2 md:p-4 pt-8 md:pt-12">
-                    <h3 className="font-display text-sm md:text-xl text-paper uppercase leading-tight drop-shadow-md">
+                {/* Cinematic Vignette Effect */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.3)_100%)]" />
+
+                {/* Rank Badge */}
+                {rank && (
+                    <div className={cn(
+                        "absolute top-2 left-2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center font-display text-sm md:text-lg font-bold",
+                        "border-2 shadow-lg",
+                        isLeading
+                            ? "bg-gold text-navy border-navy rotate-[-5deg]"
+                            : "bg-navy text-paper border-gold rotate-[5deg]"
+                    )}>
+                        #{rank}
+                    </div>
+                )}
+
+                {/* Title Overlay - Enhanced */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy via-navy/90 to-transparent p-3 md:p-4 pt-12 md:pt-16">
+                    <h3 className="font-display text-sm md:text-xl text-paper uppercase leading-tight drop-shadow-[2px_2px_0px_rgba(0,0,0,0.8)]">
                         {title}
                     </h3>
+                    {/* Quick Stats */}
+                    <div className="flex items-center gap-2 mt-1 text-[10px] md:text-xs text-paper/80 font-mono">
+                        <span className="flex items-center gap-1">
+                            <Sparkles size={10} className="text-gold" />
+                            {votes} votes
+                        </span>
+                        <span>•</span>
+                        <span>{percentage}%</span>
+                    </div>
                 </div>
 
-                {/* Info Hint on Hover */}
-                <div className="absolute top-2 right-2 bg-navy/80 text-paper p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Info size={14} />
+                {/* Tap for Details Hint - Enhanced */}
+                <div className="absolute top-2 right-2 bg-navy/95 text-paper px-2 py-1.5 rounded-md flex items-center gap-1.5 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 text-[10px] md:text-xs font-mono border border-gold/30 backdrop-blur-sm">
+                    <Eye size={12} className="text-gold" />
+                    <span>View Details</span>
                 </div>
+
+                {/* Hover Overlay Effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 {/* Selected State Overlay - User voted for THIS movie */}
                 {hasVoted && (
-                    <div className="absolute inset-0 bg-gold/30 flex items-center justify-center backdrop-blur-[1px]">
-                        <div className="bg-gold text-navy rounded-full p-1.5 md:p-2 shadow-lg animate-in zoom-in">
-                            <Check size={20} className="md:w-8 md:h-8" strokeWidth={3} />
-                        </div>
+                    <div className="absolute inset-0 bg-green-500/30 flex items-center justify-center backdrop-blur-[2px]">
+                        <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="bg-green-500 text-white rounded-full p-2 md:p-3 shadow-lg"
+                        >
+                            <Check size={24} className="md:w-8 md:h-8" strokeWidth={3} />
+                        </motion.div>
                     </div>
                 )}
 
                 {/* Locked State Overlay - User voted for ANOTHER movie */}
                 {userHasVotedForAnother && !hasVoted && (
-                    <div className="absolute inset-0 bg-navy/50 flex items-center justify-center">
-                        <div className="bg-navy/80 text-paper rounded-full p-1.5 md:p-2 shadow-lg">
-                            <Lock size={16} className="md:w-6 md:h-6" strokeWidth={2} />
+                    <div className="absolute inset-0 bg-navy/60 flex items-center justify-center backdrop-blur-[1px]">
+                        <div className="bg-navy/90 text-paper/60 rounded-full p-2 md:p-3 shadow-lg border border-paper/20">
+                            <Lock size={18} className="md:w-6 md:h-6" strokeWidth={2} />
                         </div>
                     </div>
                 )}
             </div>
 
-            {/* Progress Bar */}
-            <div className="mt-2 md:mt-4 space-y-1 md:space-y-2">
-                <div className="flex justify-between text-[10px] md:text-xs font-mono font-bold uppercase tracking-wider md:tracking-widest text-navy">
-                    <span>{percentage}%</span>
-                    <span>{votes} Votes</span>
+            {/* Progress Bar - Enhanced */}
+            <div className="mt-3 md:mt-4 space-y-1.5 md:space-y-2">
+                <div className="flex justify-between text-[10px] md:text-xs font-mono font-bold uppercase tracking-wide text-navy">
+                    <span className="flex items-center gap-1">
+                        {isLeading && <span className="text-gold">👑</span>}
+                        {percentage}%
+                    </span>
+                    <span className="text-muted-foreground">{votes} Votes</span>
                 </div>
-                <div className="h-3 md:h-4 w-full bg-navy/10 border border-navy/20 p-[2px]">
+                <div className="h-3 md:h-4 w-full bg-navy/10 border-2 border-navy/20 overflow-hidden">
                     <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${percentage}%` }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className={cn("h-full bg-gold", hasVoted && "bg-green-500")}
-                    />
+                        transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
+                        className={cn(
+                            "h-full relative",
+                            hasVoted ? "bg-green-500" : isLeading ? "bg-gradient-to-r from-gold to-orange" : "bg-gold"
+                        )}
+                    >
+                        {/* Shimmer effect on progress */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
+                    </motion.div>
                 </div>
             </div>
 
-            {/* Vote Button */}
+            {/* Vote Button - Enhanced */}
             <Button
                 onClick={(e) => {
                     e.stopPropagation();
                     onVote(id);
                 }}
                 disabled={isDisabled}
-                variant={hasVoted ? "secondary" : "default"}
+                variant={hasVoted ? "secondary" : userHasVotedForAnother ? "outline" : "default"}
                 className={cn(
-                    "mt-2 md:mt-4 w-full border-2 border-navy font-display text-xs md:text-lg tracking-wider md:tracking-widest py-3 md:py-4 active:scale-95 transition-transform",
-                    userHasVotedForAnother && !hasVoted && "opacity-50 cursor-not-allowed"
+                    "mt-3 md:mt-4 w-full font-display text-xs md:text-base tracking-wider py-3 md:py-4 transition-all duration-300",
+                    !isDisabled && "hover:shadow-[4px_4px_0px_0px_var(--color-gold)] hover:-translate-y-0.5",
+                    hasVoted && "!bg-green-600 border-2 border-green-700 text-white hover:!bg-green-700",
+                    userHasVotedForAnother && !hasVoted && "!bg-navy/80 border-2 border-navy text-paper/70 cursor-not-allowed"
                 )}
             >
-                {hasVoted ? "YOUR VOTE ✓" : userHasVotedForAnother ? "LOCKED" : "VOTE"}
+                {hasVoted ? (
+                    <span className="flex items-center justify-center gap-2">
+                        <Check size={16} /> YOUR VOTE
+                    </span>
+                ) : userHasVotedForAnother ? (
+                    <span className="flex items-center justify-center gap-2 opacity-70">
+                        <Lock size={14} /> LOCKED
+                    </span>
+                ) : (
+                    "VOTE NOW"
+                )}
             </Button>
         </motion.div>
     );

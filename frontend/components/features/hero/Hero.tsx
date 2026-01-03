@@ -31,7 +31,7 @@ export function Hero() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8B0000] opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 md:h-2.5 md:w-2.5 bg-[#8B0000]"></span>
                         </span>
-                        <span className="text-[#F4C430] font-pixel tracking-wider text-[7px] md:text-[8px] uppercase">Live in Abuja • Dec 28</span>
+                        <span className="text-[#F4C430] font-pixel tracking-wider text-[7px] md:text-[8px] uppercase">Live in Abuja • Jan 10</span>
                     </div>
                 </motion.div>
 
@@ -64,7 +64,7 @@ export function Hero() {
                     <div className="w-px h-6 md:h-8 bg-[#F4C430]/40" />
                     <div className="text-center">
                         <p className="text-[#F4C430] text-[7px] md:text-[8px] font-pixel tracking-widest uppercase mb-1 md:mb-2">Where</p>
-                        <p className="font-mono font-bold text-xs md:text-base uppercase tracking-wide">Three Arms Zone</p>
+                        <p className="font-mono font-bold text-xs md:text-base uppercase tracking-wide">Judges Quarters</p>
                     </div>
                 </motion.div>
 
@@ -94,7 +94,7 @@ export function Hero() {
             {/* Marquee Footer */}
             <div className="relative z-20 w-full border-t-4 border-[#1A233A] bg-[#F4C430] py-2 md:py-3">
                 <Marquee className="text-[#1A233A] font-bold text-base md:text-xl uppercase tracking-widest font-mono">
-                    <span>LIMITED CAPACITY /// 100 CARS ONLY /// RETRO VIBES /// PRE-ORDER SNACKS /// DEC 28 /// ABUJA /// </span>
+                    <span>LIMITED CAPACITY /// 100 CARS ONLY /// RETRO VIBES /// PRE-ORDER SNACKS /// JAN 10 /// ABUJA /// </span>
                 </Marquee>
             </div>
         </section>

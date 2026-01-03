@@ -1,7 +1,9 @@
 "use client";
 
-import { TicketCard } from "@/components/shared/TicketCard";
 import { Marquee } from "@/components/shared/Marquee";
+import { TicketCard, ticketData } from "./TicketCard";
+import Script from "next/script";
+import { motion } from "framer-motion";
 
 export function TicketSection() {
     return (
@@ -12,48 +14,123 @@ export function TicketSection() {
             <div className="container mx-auto px-3 md:px-4 relative z-10">
                 <div className="text-center mb-10 md:mb-16">
                     <h2 className="font-display text-4xl md:text-5xl lg:text-7xl text-paper mb-3 md:mb-4 uppercase drop-shadow-[4px_4px_0px_#000]">
-                        Admit One
+                        Get Your Tickets Now
                     </h2>
                     <div className="w-16 md:w-24 h-1.5 md:h-2 bg-red mx-auto mb-4 md:mb-6" />
                     <p className="font-mono text-base md:text-xl text-gold max-w-xl mx-auto px-2">
-                        Secure your spot. Capacity is strictly limited to 100 cars.
-                        Don't be the one watching from Instagram stories.
+                        Tickets are selling fast! Don't be the one watching from Instagram stories.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto items-center">
-                    {/* Standard Ticket */}
-                    <TicketCard
-                        type="NORMAL"
-                        price="₦12,000"
-                        includes={[
-                            "Admit One Car (Max 4 Ppl)",
-                            "General Parking Spot",
-                            "Access to all on-site vendors",
-                            "Event Access"
-                        ]}
-                    />
+                {/* Event Info */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="max-w-4xl mx-auto mb-12 md:mb-16"
+                >
+                    <div className="bg-paper/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border-2 border-gold/30 text-center">
+                        <div className="flex flex-col md:flex-row md:justify-center md:items-center gap-4 md:gap-8">
+                            <div className="flex items-center justify-center gap-2">
+                                <span className="text-2xl">📅</span>
+                                <span className="font-display text-xl md:text-2xl text-paper">10th January 2026</span>
+                            </div>
+                            <div className="hidden md:block w-px h-8 bg-gold/30" />
+                            <div className="flex items-center justify-center gap-2">
+                                <span className="text-2xl">📍</span>
+                                <span className="font-mono text-sm md:text-base text-paper/90">
+                                    Opposite Federal Ministry of Justice (Judges Quarters), Abuja
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
 
-                    {/* VIP Ticket */}
-                    <TicketCard
-                        type="VIP"
-                        price="₦35,000"
-                        includes={[
-                            "Admit One Car (Max 4 Ppl)",
-                            "Prime Center View Parking",
-                            "Snack Box (2x Popcorn/Drinks)",
-                            "Priority Lane Access (Skip Line)",
-                            "Cozy Blankets provided"
-                        ]}
-                        className="md:-rotate-1 md:scale-105 z-10"
-                    />
+                {/* Ticket Cards Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-12 md:mb-16">
+                    {ticketData.map((ticket, index) => (
+                        <TicketCard
+                            key={index}
+                            title={ticket.title}
+                            price={ticket.price}
+                            description={ticket.description}
+                            perks={ticket.perks}
+                            note={ticket.note}
+                            badge={ticket.badge}
+                            featured={ticket.featured}
+                        />
+                    ))}
+                </div>
+
+                {/* Event Notes */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="max-w-3xl mx-auto mb-12 md:mb-16"
+                >
+                    <div className="bg-red/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-red/30">
+                        <h3 className="font-display text-xl text-paper mb-4 uppercase">📝 Event Notes & Tips</h3>
+                        <ul className="space-y-2 font-mono text-sm text-paper/80">
+                            <li className="flex items-start gap-2">
+                                <span className="text-gold">•</span>
+                                Arrive early to secure the best parking spot.
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-gold">•</span>
+                                Audio is via speakers – no FM transmission this year.
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-gold">•</span>
+                                Outside food & drinks are not allowed (unless specified).
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-gold">•</span>
+                                Car Package attendees will be featured on the event page and recognized during the event.
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-gold">•</span>
+                                Couples Ticket is valid only for 2 people; no additional add-ons.
+                            </li>
+                        </ul>
+                    </div>
+                </motion.div>
+
+                {/* CTA Section */}
+                <div className="text-center mb-12">
+                    <a
+                        href="#tix-widget"
+                        className="inline-block bg-gold text-navy font-display text-xl md:text-2xl px-8 py-4 rounded-xl uppercase tracking-wider hover:bg-gold/90 transition-all hover:scale-105 shadow-lg"
+                    >
+                        🎟️ Book Now
+                    </a>
+                </div>
+
+                <div id="tix-widget" className="max-w-5xl mx-auto">
+                    {/* Tix.africa Widget */}
+                    <div className="tt-widget w-full min-h-[2100px] md:min-h-[1780px] bg-paper/5 rounded-2xl overflow-hidden border-2 border-gold/20 shadow-2xl">
+                        <div className="tt-widget-fallback w-full h-full">
+                            <iframe
+                                src="https://widget.tix.africa/yard-drive-in/VXNlci1jMDAwY2Y3NC02MGMzLTRlNTgtODJhZi05ZWUyMDhkZTVmMTM="
+                                className="w-full border-none h-[2100px] md:h-[1780px]"
+                                title="Ticket Widget"
+                                scrolling="no"
+                            />
+                        </div>
+
+                        <Script
+                            src="https://widget.tix.africa/widget.js"
+                            strategy="lazyOnload"
+                            data-url="https://widget.tix.africa/yard-drive-in/VXNlci1jMDAwY2Y3NC02MGMzLTRlNTgtODJhZi05ZWUyMDhkZTVmMTM="
+                        />
+                    </div>
                 </div>
             </div>
 
             {/* Bottom Marquee */}
             <div className="mt-16 md:mt-24 border-y-4 border-gold bg-red py-2 md:py-3">
                 <Marquee direction="right" className="text-paper font-display text-lg md:text-2xl uppercase tracking-widest">
-                    <span> /// DEC 28 /// GATES OPEN 5PM /// FOOD VENDORS ON SITE /// DEC 28 /// GATES OPEN 5PM /// </span>
+                    <span> /// JAN 10 /// GATES OPEN 5PM /// FOOD VENDORS ON SITE /// JAN 10 /// GATES OPEN 5PM /// </span>
                 </Marquee>
             </div>
         </section>

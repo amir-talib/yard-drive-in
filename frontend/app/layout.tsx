@@ -38,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${abrilFatface.variable} ${kaushanScript.variable} ${merriweather.variable} ${pressStart2P.variable} antialiased bg-background text-foreground overflow-x-hidden`}
       >

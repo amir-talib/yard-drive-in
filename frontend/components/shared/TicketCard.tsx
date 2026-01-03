@@ -56,13 +56,15 @@ export function TicketCard({ type, price, includes, className }: TicketProps) {
 
                         {/* Mobile CTA - Always visible */}
                         <div className="mt-6 md:hidden">
-                            <Button
-                                size="lg"
-                                variant={isVip ? "secondary" : "default"}
-                                className="w-full text-base font-bold py-6 active:scale-95 transition-transform"
-                            >
-                                SECURE TICKET
-                            </Button>
+                            <a href="https://www.jetronticket.com/yarddrivein?checkout=true" target="_blank" rel="noopener noreferrer" className="block">
+                                <Button
+                                    size="lg"
+                                    variant={isVip ? "secondary" : "default"}
+                                    className="w-full text-base font-bold py-6 active:scale-95 transition-transform"
+                                >
+                                    SECURE TICKET
+                                </Button>
+                            </a>
                         </div>
                     </div>
 
@@ -76,9 +78,11 @@ export function TicketCard({ type, price, includes, className }: TicketProps) {
 
                 {/* Desktop Action Button Overlay - Hidden on mobile */}
                 <div className="hidden md:flex absolute inset-0 bg-navy/80 opacity-0 group-hover:opacity-100 transition-opacity items-center justify-center backdrop-blur-sm">
-                    <Button size="lg" variant={isVip ? "secondary" : "default"} className="animate-in zoom-in-50 duration-300">
-                        SECURE TICKET
-                    </Button>
+                    <a href="https://www.jetronticket.com/yarddrivein?checkout=true" target="_blank" rel="noopener noreferrer">
+                        <Button size="lg" variant={isVip ? "secondary" : "default"} className="animate-in zoom-in-50 duration-300">
+                            SECURE TICKET
+                        </Button>
+                    </a>
                 </div>
             </Card>
         </div>

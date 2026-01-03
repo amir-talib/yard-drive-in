@@ -203,15 +203,24 @@ export function VotingSection() {
         : 0;
 
     return (
-        <section id="cinema-wars" className="py-12 md:py-20 bg-paper border-b-4 border-navy overflow-hidden">
+        <section id="movie-wars" className="py-12 md:py-20 bg-paper border-b-4 border-navy overflow-hidden">
             {/* Section Header */}
             <div className="container mx-auto px-4 mb-10 md:mb-16 text-center">
+                <div className="inline-block bg-red text-paper px-4 py-1 mb-4 font-mono text-xs md:text-sm uppercase tracking-widest animate-pulse">
+                    🏆 Semi-Finals • Top {MOVIES_DATA.length} Contenders
+                </div>
                 <h2 className="font-display text-4xl md:text-5xl lg:text-7xl text-navy mb-3 md:mb-4 uppercase drop-shadow-[4px_4px_0px_rgba(244,196,48,1)]">
-                    Cinema Wars
+                    Movie Wars
                 </h2>
-                <p className="font-mono text-sm md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
-                    Democracy is messy, but the popcorn is cheap. Vote for the movie you want to see.
-                    Winner takes the screen.
+                <p className="font-mono text-lg md:text-xl lg:text-2xl text-navy font-bold mb-2">
+                    Vote Your Favourite Movies
+                </p>
+                <p className="font-mono text-sm md:text-base text-muted-foreground max-w-2xl mx-auto px-2 mb-3">
+                    These films fought their way to the top. Now only <strong>ONE</strong> will claim the big screen.
+                    Your vote decides the champion.
+                </p>
+                <p className="font-mono text-xs md:text-sm text-gold bg-navy/10 inline-block px-3 py-1.5 rounded-full">
+                    👆 Tap any poster to see movie details
                 </p>
                 {userVote && voterName && (
                     <div className="mt-4 inline-flex items-center gap-2 bg-gold/20 border-2 border-gold px-4 py-2">
@@ -225,27 +234,31 @@ export function VotingSection() {
             {/* Marquee Divider */}
             <div className="mb-10 md:mb-16 -rotate-1 bg-navy py-2 border-y-2 border-gold">
                 <Marquee className="text-paper font-mono text-xs md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em]">
-                    <span> /// VOTE NOW /// LIVE RESULTS /// DECIDE THE FATE /// VOTE NOW /// LIVE RESULTS /// </span>
+                    <span> /// SEMI-FINALS /// VOTE NOW /// TOP CONTENDERS /// LIVE RESULTS /// YOUR VOTE DECIDES /// </span>
                 </Marquee>
             </div>
 
             {/* Movie Grid */}
             <div className="container mx-auto px-3 md:px-4">
                 <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 md:gap-6 lg:gap-8">
-                    {MOVIES_DATA.map((movie) => (
-                        <MovieCard
-                            key={movie.id}
-                            id={movie.id}
-                            title={movie.title}
-                            posterUrl={movie.posterUrl}
-                            votes={votes[movie.id] || 0}
-                            totalVotes={totalVotes}
-                            hasVoted={userVote === movie.id}
-                            userHasVotedForAnother={userVote !== null && userVote !== movie.id}
-                            onVote={handleVoteClick}
-                            onPosterClick={handlePosterClick}
-                        />
-                    ))}
+                    {[...MOVIES_DATA]
+                        .map(movie => ({ ...movie, voteCount: votes[movie.id] || 0 }))
+                        .sort((a, b) => b.voteCount - a.voteCount)
+                        .map((movie, index) => (
+                            <MovieCard
+                                key={movie.id}
+                                id={movie.id}
+                                title={movie.title}
+                                posterUrl={movie.posterUrl}
+                                votes={votes[movie.id] || 0}
+                                totalVotes={totalVotes}
+                                hasVoted={userVote === movie.id}
+                                userHasVotedForAnother={userVote !== null && userVote !== movie.id}
+                                onVote={handleVoteClick}
+                                onPosterClick={handlePosterClick}
+                                rank={index + 1}
+                            />
+                        ))}
                 </div>
             </div>
 

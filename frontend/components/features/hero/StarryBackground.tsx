@@ -10,6 +10,12 @@ function Stars(props: any) {
     const ref = useRef<any>(null);
     const [sphere] = useMemo(() => {
         const coords = random.inSphere(new Float32Array(5000), { radius: 1.2 });
+        // Sanitize NaN values that can occur with some random implementations
+        for (let i = 0; i < coords.length; i++) {
+            if (isNaN(coords[i]) || !isFinite(coords[i])) {
+                coords[i] = (Math.random() - 0.5) * 2.4; // Random value within sphere bounds
+            }
+        }
         return [coords];
     }, []);
 
