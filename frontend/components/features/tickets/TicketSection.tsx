@@ -133,7 +133,7 @@ export function TicketSection() {
 
                 <div id="tix-widget" className="max-w-5xl mx-auto relative">
                     {/* Selling Fast Badge - Corner */}
-                    <span className="absolute -top-2 -right-2 z-10 bg-red text-paper font-mono text-[10px] md:text-xs px-3 py-1.5 rounded-bl-lg rounded-tr-lg uppercase tracking-wide border-2 border-paper shadow-lg animate-[wiggle_1s_ease-in-out_infinite]">
+                    <span className="absolute -top-2 -right-2 z-10 bg-[#8B0000] text-white font-mono text-[10px] md:text-xs px-3 py-1.5 rounded-bl-lg rounded-tr-lg uppercase tracking-wide border-2 border-white shadow-lg animate-[wiggle_1s_ease-in-out_infinite]">
                         🔥 Selling Fast!
                     </span>
                     {/* Tix.africa Widget - Scrollable Container */}
