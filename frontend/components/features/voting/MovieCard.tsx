@@ -81,18 +81,14 @@ export function MovieCard({
                 {/* Rank Badge */}
                 {rank && (
                     <div className={cn(
-                        "absolute top-2 left-2 z-20 flex items-center justify-center font-display font-bold shadow-[0_4px_8px_rgba(0,0,0,0.5)]",
+                        "absolute top-2 left-2 z-20 flex items-center justify-center font-display font-bold shadow-[0_4px_8px_rgba(0,0,0,0.5)] rounded-lg border-2",
                         isLeading
-                            ? "w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#FFD700] via-[#FDB931] to-[#C09000] text-navy border-2 border-white rotate-[-10deg] rounded-full ring-2 ring-[#C09000]/50"
-                            : "w-10 h-10 md:w-12 md:h-12 bg-white text-black border-2 border-gold rotate-[5deg] rounded-lg"
+                            ? "w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#FFD700] via-[#FDB931] to-[#C09000] text-black border-black rotate-[-5deg]"
+                            : "w-10 h-10 md:w-12 md:h-12 bg-white text-black border-gold rotate-[5deg]"
                     )}>
-                        {isLeading ? (
-                            <div className="flex flex-col items-center justify-center leading-none">
-                                <span className="text-xl md:text-2xl drop-shadow-sm">#1</span>
-                            </div>
-                        ) : (
-                            <span className="text-base md:text-xl">#{rank}</span>
-                        )}
+                        <span className={cn("leading-none drop-shadow-sm", isLeading ? "text-2xl md:text-3xl" : "text-base md:text-xl")}>
+                            #{rank}
+                        </span>
                     </div>
                 )}
 
@@ -153,19 +149,14 @@ export function MovieCard({
                     </span>
                     <span className="text-[#1A233A]/70">{votes} Votes</span>
                 </div>
-                <div className="h-3 md:h-4 w-full bg-[#1A233A]/20 border-2 border-[#1A233A]/30 overflow-hidden">
-                    <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${percentage}%` }}
-                        transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
+                <div className="h-4 md:h-5 w-full bg-[#1A233A]/30 border-2 border-[#1A233A] overflow-hidden rounded-sm relative">
+                    <div
+                        style={{ width: `${percentage}%` }}
                         className={cn(
-                            "h-full relative",
+                            "h-full",
                             hasVoted ? "bg-green-500" : isLeading ? "bg-gradient-to-r from-gold to-orange" : "bg-gold"
                         )}
-                    >
-                        {/* Shimmer effect on progress */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
-                    </motion.div>
+                    />
                 </div>
             </div>
 

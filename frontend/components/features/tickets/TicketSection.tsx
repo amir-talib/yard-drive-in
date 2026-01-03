@@ -108,11 +108,11 @@ export function TicketSection() {
 
                 <div id="tix-widget" className="max-w-5xl mx-auto">
                     {/* Tix.africa Widget */}
-                    <div className="tt-widget w-full min-h-[2100px] md:min-h-[1780px] bg-paper/5 rounded-2xl overflow-hidden border-2 border-gold/20 shadow-2xl">
+                    <div className="tt-widget w-full min-h-[2100px] md:min-h-[1800px] bg-paper/5 rounded-2xl overflow-hidden border-2 border-gold/20 shadow-2xl">
                         <div className="tt-widget-fallback w-full h-full">
                             <iframe
                                 src="https://widget.tix.africa/yard-drive-in/VXNlci1jMDAwY2Y3NC02MGMzLTRlNTgtODJhZi05ZWUyMDhkZTVmMTM="
-                                className="w-full border-none h-[2100px] md:h-[1780px]"
+                                className="w-full border-none h-[2100px] md:h-[1800px]"
                                 title="Ticket Widget"
                                 scrolling="no"
                             />
