@@ -107,14 +107,14 @@ export function TicketSection() {
                 </div>
 
                 <div id="tix-widget" className="max-w-5xl mx-auto">
-                    {/* Tix.africa Widget */}
-                    <div className="tt-widget w-full min-h-[2100px] md:min-h-[1800px] bg-paper/5 rounded-2xl overflow-hidden border-2 border-gold/20 shadow-2xl">
-                        <div className="tt-widget-fallback w-full h-full">
+                    {/* Tix.africa Widget - Scrollable Container */}
+                    <div className="tt-widget w-full h-[80vh] md:h-[85vh] bg-paper/5 rounded-2xl border-2 border-gold/20 shadow-2xl overflow-y-auto overflow-x-hidden [-webkit-overflow-scrolling:touch]">
+                        <div className="tt-widget-fallback w-full">
                             <iframe
                                 src="https://widget.tix.africa/yard-drive-in/VXNlci1jMDAwY2Y3NC02MGMzLTRlNTgtODJhZi05ZWUyMDhkZTVmMTM="
-                                className="w-full border-none h-[2100px] md:h-[1800px]"
+                                className="w-full border-none min-h-[2000px]"
                                 title="Ticket Widget"
-                                scrolling="no"
+                                scrolling="yes"
                             />
                         </div>
 
@@ -124,6 +124,11 @@ export function TicketSection() {
                             data-url="https://widget.tix.africa/yard-drive-in/VXNlci1jMDAwY2Y3NC02MGMzLTRlNTgtODJhZi05ZWUyMDhkZTVmMTM="
                         />
                     </div>
+
+                    {/* Scroll hint for mobile */}
+                    <p className="text-center text-paper/50 text-xs mt-2 md:hidden font-mono">
+                        ↕ Scroll within widget to view all options
+                    </p>
                 </div>
             </div>
 

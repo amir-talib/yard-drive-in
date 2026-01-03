@@ -149,13 +149,13 @@ export function MovieCard({
                     </span>
                     <span className="text-[#1A233A]/70">{votes} Votes</span>
                 </div>
-                <div className="h-4 md:h-5 w-full bg-[#1A233A]/30 border-2 border-[#1A233A] overflow-hidden rounded-sm relative">
+                <div className="h-4 md:h-5 w-full bg-gray-300 border-2 border-[#1A233A] overflow-hidden rounded-sm">
                     <div
-                        style={{ width: `${percentage}%` }}
-                        className={cn(
-                            "h-full",
-                            hasVoted ? "bg-green-500" : isLeading ? "bg-gradient-to-r from-gold to-orange" : "bg-gold"
-                        )}
+                        style={{
+                            width: `${percentage}%`,
+                            backgroundColor: hasVoted ? '#22c55e' : isLeading ? '#F4C430' : '#F4C430'
+                        }}
+                        className="h-full"
                     />
                 </div>
             </div>
