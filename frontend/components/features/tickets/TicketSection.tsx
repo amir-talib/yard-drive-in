@@ -128,6 +128,20 @@ export function TicketSection() {
                             <span className="bg-gold text-navy font-bold w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 text-xs">4</span>
                             <span>Receive your e-ticket via email — show it at the gate!</span>
                         </li>
+                        <li className="flex gap-2 items-start">
+                            <span className="bg-gold text-navy font-bold w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 text-xs">5</span>
+                            <span>
+                                Alternatively, buy directly on{" "}
+                                <a
+                                    href="https://tix.africa/discover/yard-drive-in/checkout?step=tickets"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-gold underline hover:text-gold/80 transition-colors"
+                                >
+                                    Tix Africa
+                                </a>
+                            </span>
+                        </li>
                     </ol>
                 </div>
 
