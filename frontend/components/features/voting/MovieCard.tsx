@@ -141,14 +141,14 @@ export function MovieCard({
 
             {/* Progress Bar - Enhanced */}
             <div className="mt-3 md:mt-4 space-y-1.5 md:space-y-2">
-                <div className="flex justify-between text-[10px] md:text-xs font-mono font-bold uppercase tracking-wide text-navy">
+                <div className="flex justify-between text-[10px] md:text-xs font-mono font-bold uppercase tracking-wide text-[#1A233A]">
                     <span className="flex items-center gap-1">
                         {isLeading && <span className="text-gold">👑</span>}
                         {percentage}%
                     </span>
-                    <span className="text-muted-foreground">{votes} Votes</span>
+                    <span className="text-[#1A233A]/70">{votes} Votes</span>
                 </div>
-                <div className="h-3 md:h-4 w-full bg-navy/10 border-2 border-navy/20 overflow-hidden">
+                <div className="h-3 md:h-4 w-full bg-[#1A233A]/20 border-2 border-[#1A233A]/30 overflow-hidden">
                     <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${percentage}%` }}
