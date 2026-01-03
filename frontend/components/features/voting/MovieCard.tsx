@@ -81,23 +81,28 @@ export function MovieCard({
                 {/* Rank Badge */}
                 {rank && (
                     <div className={cn(
-                        "absolute top-2 left-2 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center font-display text-sm md:text-lg font-bold",
-                        "border-2 shadow-lg",
+                        "absolute top-2 left-2 z-20 flex items-center justify-center font-display font-bold shadow-[0_4px_8px_rgba(0,0,0,0.5)]",
                         isLeading
-                            ? "bg-gold text-navy border-navy rotate-[-5deg]"
-                            : "bg-navy text-paper border-gold rotate-[5deg]"
+                            ? "w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#FFD700] via-[#FDB931] to-[#C09000] text-navy border-2 border-white rotate-[-10deg] rounded-full ring-2 ring-[#C09000]/50"
+                            : "w-10 h-10 md:w-12 md:h-12 bg-white text-black border-2 border-gold rotate-[5deg] rounded-lg"
                     )}>
-                        #{rank}
+                        {isLeading ? (
+                            <div className="flex flex-col items-center justify-center leading-none">
+                                <span className="text-xl md:text-2xl drop-shadow-sm">#1</span>
+                            </div>
+                        ) : (
+                            <span className="text-base md:text-xl">#{rank}</span>
+                        )}
                     </div>
                 )}
 
                 {/* Title Overlay - Enhanced */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy via-navy/90 to-transparent p-3 md:p-4 pt-12 md:pt-16">
-                    <h3 className="font-display text-sm md:text-xl text-paper uppercase leading-tight drop-shadow-[2px_2px_0px_rgba(0,0,0,0.8)]">
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-3 md:p-4 pt-16 md:pt-20">
+                    <h3 className="font-display text-sm md:text-xl text-white uppercase leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,1)]">
                         {title}
                     </h3>
                     {/* Quick Stats */}
-                    <div className="flex items-center gap-2 mt-1 text-[10px] md:text-xs text-paper/80 font-mono">
+                    <div className="flex items-center gap-2 mt-1 text-[10px] md:text-xs text-white/90 font-mono drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                         <span className="flex items-center gap-1">
                             <Sparkles size={10} className="text-gold" />
                             {votes} votes

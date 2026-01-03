@@ -9,11 +9,13 @@ import * as random from "maath/random/dist/maath-random.esm";
 function Stars(props: any) {
     const ref = useRef<any>(null);
     const [sphere] = useMemo(() => {
-        const coords = random.inSphere(new Float32Array(5000), { radius: 1.2 });
-        // Sanitize NaN values that can occur with some random implementations
+        const coords = new Float32Array(5000);
+        random.inSphere(coords, { radius: 1.2 });
+        // Rigorous NaN sanitization
         for (let i = 0; i < coords.length; i++) {
             if (isNaN(coords[i]) || !isFinite(coords[i])) {
-                coords[i] = (Math.random() - 0.5) * 2.4; // Random value within sphere bounds
+                // Fallback to safe random coordinates if NaN is detected
+                coords[i] = (Math.random() - 0.5) * 2.0;
             }
         }
         return [coords];
