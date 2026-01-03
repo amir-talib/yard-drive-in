@@ -75,19 +75,23 @@ export function Hero() {
                     transition={{ delay: 0.7 }}
                     className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:w-auto px-4 sm:px-0"
                 >
-                    <Button
-                        size="lg"
-                        className="text-sm md:text-lg px-6 md:px-10 py-5 md:py-7 bg-[#8B0000] hover:bg-[#8B0000]/90 text-white border-2 border-[#1A233A] shadow-[4px_4px_0px_0px_#1A233A] md:shadow-[6px_6px_0px_0px_#1A233A] hover:shadow-[2px_2px_0px_0px_#1A233A] hover:translate-x-1 hover:translate-y-1 active:translate-x-1 active:translate-y-1 transition-all font-bold tracking-wider w-full sm:w-auto"
-                    >
-                        SECURE YOUR SPOT
-                    </Button>
-                    <Button
-                        size="lg"
-                        variant="outline"
-                        className="text-sm md:text-lg px-6 md:px-10 py-5 md:py-7 bg-[#F4C430] text-[#1A233A] border-2 border-[#1A233A] shadow-[4px_4px_0px_0px_#1A233A] md:shadow-[6px_6px_0px_0px_#1A233A] hover:shadow-[2px_2px_0px_0px_#1A233A] hover:translate-x-1 hover:translate-y-1 active:translate-x-1 active:translate-y-1 transition-all font-bold tracking-wider w-full sm:w-auto"
-                    >
-                        CINEMA WARS
-                    </Button>
+                    <a href="#tix-widget" className="w-full sm:w-auto">
+                        <Button
+                            size="lg"
+                            className="text-sm md:text-lg px-6 md:px-10 py-5 md:py-7 bg-[#8B0000] hover:bg-[#8B0000]/90 text-white border-2 border-[#1A233A] shadow-[4px_4px_0px_0px_#1A233A] md:shadow-[6px_6px_0px_0px_#1A233A] hover:shadow-[2px_2px_0px_0px_#1A233A] hover:translate-x-1 hover:translate-y-1 active:translate-x-1 active:translate-y-1 transition-all font-bold tracking-wider w-full"
+                        >
+                            SECURE YOUR SPOT
+                        </Button>
+                    </a>
+                    <a href="#movie-wars" className="w-full sm:w-auto">
+                        <Button
+                            size="lg"
+                            variant="outline"
+                            className="text-sm md:text-lg px-6 md:px-10 py-5 md:py-7 bg-[#F4C430] text-[#1A233A] border-2 border-[#1A233A] shadow-[4px_4px_0px_0px_#1A233A] md:shadow-[6px_6px_0px_0px_#1A233A] hover:shadow-[2px_2px_0px_0px_#1A233A] hover:translate-x-1 hover:translate-y-1 active:translate-x-1 active:translate-y-1 transition-all font-bold tracking-wider w-full"
+                        >
+                            CINEMA WARS
+                        </Button>
+                    </a>
                 </motion.div>
             </div>
 
