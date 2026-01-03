@@ -97,7 +97,7 @@ export function TicketSection() {
                 </motion.div>
 
                 {/* CTA Section */}
-                <div className="text-center mb-12">
+                <div className="text-center mb-8">
                     <a
                         href="#tix-widget"
                         className="inline-block bg-gold text-navy font-display text-xl md:text-2xl px-8 py-4 rounded-xl uppercase tracking-wider hover:bg-gold/90 transition-all hover:scale-105 shadow-lg"
@@ -106,7 +106,36 @@ export function TicketSection() {
                     </a>
                 </div>
 
-                <div id="tix-widget" className="max-w-5xl mx-auto">
+                {/* How to Get Tickets - Instructions */}
+                <div className="max-w-2xl mx-auto mb-8 bg-navy/80 rounded-xl p-5 md:p-6 border border-gold/30">
+                    <h4 className="font-display text-gold text-base md:text-lg uppercase mb-3 text-center">
+                        How to Get Your Tickets
+                    </h4>
+                    <ol className="space-y-2 font-mono text-paper/90 text-xs md:text-sm">
+                        <li className="flex gap-2 items-start">
+                            <span className="bg-gold text-navy font-bold w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 text-xs">1</span>
+                            <span>Select your ticket type and quantity below</span>
+                        </li>
+                        <li className="flex gap-2 items-start">
+                            <span className="bg-gold text-navy font-bold w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 text-xs">2</span>
+                            <span>Click <strong className="text-gold">"Proceed"</strong> to continue</span>
+                        </li>
+                        <li className="flex gap-2 items-start">
+                            <span className="bg-gold text-navy font-bold w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 text-xs">3</span>
+                            <span>Enter your details and complete payment</span>
+                        </li>
+                        <li className="flex gap-2 items-start">
+                            <span className="bg-gold text-navy font-bold w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 text-xs">4</span>
+                            <span>Receive your e-ticket via email — show it at the gate!</span>
+                        </li>
+                    </ol>
+                </div>
+
+                <div id="tix-widget" className="max-w-5xl mx-auto relative">
+                    {/* Selling Fast Badge on Widget */}
+                    <span className="absolute -top-3 right-4 md:right-8 z-10 bg-red text-paper font-mono text-[11px] md:text-xs px-3 py-1 rounded-full uppercase tracking-wide border-2 border-paper/40 shadow-lg animate-[wiggle_1s_ease-in-out_infinite]">
+                        🔥 Selling Fast!
+                    </span>
                     {/* Tix.africa Widget - Scrollable Container */}
                     <div className="tt-widget w-full h-[80vh] md:h-[85vh] bg-paper/5 rounded-2xl border-2 border-gold/20 shadow-2xl overflow-y-auto overflow-x-hidden [-webkit-overflow-scrolling:touch]">
                         <div className="tt-widget-fallback w-full">
@@ -124,11 +153,6 @@ export function TicketSection() {
                             data-url="https://widget.tix.africa/yard-drive-in/VXNlci1jMDAwY2Y3NC02MGMzLTRlNTgtODJhZi05ZWUyMDhkZTVmMTM="
                         />
                     </div>
-
-                    {/* Scroll hint for mobile */}
-                    <p className="text-center text-paper/50 text-xs mt-2 md:hidden font-mono">
-                        ↕ Scroll within widget to view all options
-                    </p>
                 </div>
             </div>
 
